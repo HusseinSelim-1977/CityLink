@@ -1,0 +1,166 @@
+/* 
+ * CityLink - Epic UI/UX Stylesheet 
+ * Inspired by Awwwards, Unseen.co, and Mobbin.
+ * Includes GSAP ScrollTrigger hooks and Glassmorphism.
+ */
+
+:root {
+    --bg-deep: #010205;
+    --bg-charcoal: #0A0C14;
+    --accent-cyan: #00F2FE;
+    --accent-violet: #A855F7;
+    --accent-orange: #FF6B6B;
+    --text-main: #F8FAFC;
+    --text-dim: #94A3B8;
+    --glass-bg: rgba(15, 17, 26, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+/* Layout Helpers */
+.hero-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+/* Glassmorphism & Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.1);
+}
+
+/* Bento Grid System */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.bento-item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-item-tall {
+    grid-row: span 2;
+}
+
+/* Typography */
+.headline-epic {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    background: linear-gradient(to bottom right, #FFFFFF 30%, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 2rem 0;
+}
+
+.text-dim {
+    color: var(--text-dim);
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition-smooth);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating Dock */
+.nav-dock-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 0.75rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-dock-link {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.nav-dock-link:hover, .nav-dock-active {
+    color: var(--text-main);
+}
+
+.nav-dock-cta {
+    background: var(--accent-cyan);
+    color: var(--bg-deep);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 800;
+}
+
+/* Marquee */
+.marquee-container {
+    background: var(--bg-charcoal);
+    padding: 1rem 0;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-cyan);
+    font-weight: 700;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

@@ -7,7 +7,8 @@ Launch via:
 or:
     gunicorn src.app:server
 """
-
+import sys
+sys.path.append('src')
 import os
 import dash
 from dash import html, dcc, callback, Input, Output

@@ -1,14 +1,14 @@
 """Shared Navigation Bar Component for CityLink.
 
-Renders an Apple/Linear-inspired floating pill header with branding,
-internal routing links, and an 'Explore Engine' CTA button.
+Renders a modern, floating "dock" navigation header with a blurred glassmorphism effect,
+branded identity, and interactive links.
 """
 
 from dash import html, dcc
 
 
 def render_navbar(active_path: str = "/") -> html.Div:
-    """Generate the primary navigation bar."""
+    """Generate the high-end floating navigation dock."""
     nav_items = [
         {"label": "Overview", "href": "/"},
         {"label": "Explore Engine", "href": "/explore"},
@@ -24,38 +24,46 @@ def render_navbar(active_path: str = "/") -> html.Div:
             dcc.Link(
                 item["label"],
                 href=item["href"],
-                className=f"nav-link-item {'active' if is_active else ''}"
+                className=f"nav-dock-link {'nav-dock-active' if is_active else ''}"
             )
         )
 
-    # Add quick launch CTA
+    # Add high-impact CTA
     links.append(
         dcc.Link(
-            "Launch Explore →",
+            "Launch Engine →",
             href="/explore",
-            className="nav-link-item nav-cta-btn"
+            className="nav-dock-cta"
         )
     )
 
     return html.Div(
-        className="citylink-navbar",
+        className="nav-dock-container",
         children=[
-            # Brand identity
+            # Branding: Compact & Premium
             dcc.Link(
                 href="/",
-                className="brand-container",
+                className="nav-dock-brand",
                 children=[
-                    html.Div("CL", className="brand-logo-badge"),
-                    html.Div([
-                        html.Div("CityLink", className="brand-text-title"),
-                        html.Div("Where homes meet rides.", className="brand-tagline"),
-                    ])
+                    html.Div("CL", className="nav-dock-logo"),
+                    html.Div("CityLink", className="nav-dock-title"),
                 ]
             ),
-            # Route links
+            # Navigation Group
             html.Nav(
-                className="nav-links-group",
+                className="nav-dock-nav",
                 children=links
+            ),
+            # Action Button
+            html.Div(
+                className="nav-dock-actions",
+                children=[
+                    dcc.Link(
+                        "SIGN IN",
+                        href="/login",
+                        className="nav-dock-btn-ghost"
+                    ),
+                ]
             )
         ]
     )
